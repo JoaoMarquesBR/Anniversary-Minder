@@ -8,15 +8,29 @@ namespace Anniversary_Minder
 {
     class Anniversary
     {
-        public string Titulo{get; set;} = "";
+        public string Names { get; set; } = "";
 
-        public string DateTime { get; set; } = "";
+        public string Date { get; set; } = "";
 
-        public string PhoneNumber { get; set; } = "";
+        public string Type { get; set; } = "";
 
-        public string Contact { get; set; } = "";
+        public string Description { get; set; } = "";
 
         public string Email { get; set; } = "";
 
+        public string PhoneNumber { get; set; } = "";
+
+        public Address Address { get; set; } =  new Address();
+    }
+
+    struct Address
+    {
+        public string StreetAddress;
+
+        public string Municipality;
+
+        public string Province;
+
+        public string PostalCode;
     }
 }

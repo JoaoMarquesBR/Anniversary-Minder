@@ -10,26 +10,26 @@
             
             while (true)
             {
-                cm.printCommandOptions();
+                cm.PrintCommandOptions();
                 Console.WriteLine("\n-------------------------------");
-                string command = cm.getUserInput().ToLower();
+                string command = cm.GetUserInput().ToLower();
                 command = command.Replace(" ", "");
                 switch (command)
                 {
                     case "n":
-                        cm.addNewAnniversary();
+                        cm.AddNewAnniversary();
                         break;
 
                     case "u":
-                        cm.listUpcomingAnniversary();
+                        cm.ListUpcomingAnniversary();
                         break;
 
                     case "x":
-                        cm.quit();
+                        cm.Quit();
                         break;
 
                     case "#":
-                        cm.quit();
+                        cm.Quit();
                         break;
 
                    default:

@@ -8,23 +8,23 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
-        public void addNewAnniversary()
+        public void AddNewAnniversary()
         {
             Console.WriteLine("Adding new anniversary");
         }
 
-        public void listUpcomingAnniversary()
+        public void ListUpcomingAnniversary()
         {
             Console.WriteLine("Upcoming anniversary");
         }
 
-        public void quit()
+        public void Quit()
         {
             Console.WriteLine("Quit");
         }
 
 
-        public void printCommandOptions()
+        public void PrintCommandOptions()
         {
             Console.WriteLine("\nPress # from above list to entry.");
             Console.WriteLine("Press N to add a new anniversary.");
@@ -32,9 +32,9 @@ namespace Anniversary_Minder
             Console.WriteLine("Press X to quit.");
         }
 
-        public string getUserInput()
+        public string GetUserInput()
         {
-            string inputCommand = Console.ReadLine();
+            string inputCommand = Console.ReadLine() ?? "";
 
             return inputCommand;
         }
