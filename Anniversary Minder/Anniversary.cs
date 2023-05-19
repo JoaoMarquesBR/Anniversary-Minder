@@ -14,23 +14,23 @@ namespace Anniversary_Minder
 
         public string Type { get; set; } = "";
 
-        public string Description { get; set; } = "";
+        public string? Description { get; set; }
 
-        public string Email { get; set; } = "";
+        public string? Email { get; set; }
 
-        public string PhoneNumber { get; set; } = "";
+        public string? PhoneNumber { get; set; }
 
-        public Address Address { get; set; } =  new Address();
+        public Address? Address { get; set; }
     }
 
     struct Address
     {
-        public string StreetAddress;
+        public string? StreetAddress;
 
-        public string Municipality;
+        public string? Municipality;
 
-        public string Province;
+        public string? Province;
 
-        public string PostalCode;
+        public string? PostalCode;
     }
 }
