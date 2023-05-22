@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Anniversary_Minder
 {
-    class Anniversary
+    public class Anniversary
     {
         public string Names { get; set; } = "";
 
@@ -23,7 +23,7 @@ namespace Anniversary_Minder
         public Address? Address { get; set; }
     }
 
-    struct Address
+    public struct Address
     {
         public string? StreetAddress;
 

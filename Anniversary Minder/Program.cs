@@ -2,6 +2,8 @@
 {
     internal class Program
     {
+        const string JsonFile = @"..\..\..\..\anniversaries.json";
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
@@ -17,7 +19,9 @@
                 switch (command)
                 {
                     case "n":
-                        cm.AddNewAnniversary();
+                        Anniversary anniversary =  cm.AddNewAnniversary();
+                        Address address =  cm.AddNewAddress();
+                        FileHandler.WriteLibToJsonFile(anniversary, JsonFile);
                         break;
 
                     case "u":
@@ -29,7 +33,7 @@
                         break;
 
                     case "#":
-                        cm.Quit();
+                        
                         break;
 
                    default:
