@@ -2,8 +2,9 @@
 {
     internal class Program
     {
-        const string JsonFile = @"../../../../anniversary.json";
-        const string lineSeparator = "-----------------------------------------------------------------------\n";
+        private const string JsonFile = @"../../../../anniversary.json";
+        private const string SchemaFile = @"../../../../anniversary_schema.json";
+        private const string lineSeparator = "-----------------------------------------------------------------------\n";
 
         static void Main(string[] args)
         {
@@ -14,7 +15,10 @@
                 Console.WriteLine(lineSeparator);
                 Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries\n");
                 Console.WriteLine(lineSeparator);
-                cm.DisplayAnniversaries(JsonFile);
+
+                List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
+                cm.DisplayAnniversaries(anniversaryList);
+
                 cm.PrintCommandOptions();
                 Console.WriteLine(lineSeparator);
 
@@ -24,10 +28,9 @@
                 switch (command)
                 {
                     case "n":
-                        Anniversary anniversary =  cm.AddAnniversary();
-
-                        List<Anniversary> anniversaryList = FileHandler.ReadJsonFileToLib(JsonFile);
+                        Anniversary anniversary = cm.AddAnniversary(SchemaFile);
                         anniversaryList.Add(anniversary);
+
                         FileHandler.WriteLibToJsonFile(anniversaryList, JsonFile);
                         break;
 

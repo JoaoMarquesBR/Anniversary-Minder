@@ -11,12 +11,10 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
-        private const string jsonSchema = @"../../../../anniversary_schema.json";
-
-        public Anniversary AddAnniversary()
+        public Anniversary AddAnniversary(in string SchemaFile)
         {
-            bool valid;
             Anniversary anniv = new Anniversary();
+            bool valid;
 
             do
             {
@@ -40,13 +38,11 @@ namespace Anniversary_Minder
 
                 anniv.Address = AddAddress();
 
-                valid = ValidateItem(anniv, jsonSchema);
+                valid = ValidateItem(anniv, SchemaFile);
 
             } while (valid == false);
 
             return anniv;
-
-
         }
 
         public Address AddAddress()
@@ -68,28 +64,31 @@ namespace Anniversary_Minder
             return address;
         }
 
-        public void DisplayAnniversaries(string file)
+        public void DisplayAnniversaries(in List<Anniversary> anniversaries)
         {
-            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(file);
+            Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType\n");
 
-            Console.WriteLine("\nName(s)\t\t\t\t\tDate\t\tType\n");
-
-            if (anniversaries != null)
+            int count = 1;
+            foreach (Anniversary anniv in anniversaries)
             {
-                int count = 1;
-                foreach (Anniversary anniv in anniversaries)
-                {
-                    Console.WriteLine($"{count}.{anniv.Names}\t\t\t\t\t{anniv.AnniversaryDate}\t{anniv.AnniversaryType}");
-                    count++;
-                }
-            }
-            else
-            {
-                anniversaries = new List<Anniversary>();
+                Console.WriteLine($"{count}.{anniv.Names}\t\t\t\t\t{anniv.AnniversaryDate}\t{anniv.AnniversaryType}");
+                count++;
             }
 
             Console.WriteLine("\n-----------------------------------------------------------------------");
         }
+
+
+        public List<Anniversary> GetAnniversaries(in string JsonFile, in string SchemaFile)
+        {
+            List<Anniversary>? anniversaries = FileHandler.ReadJsonToAnniversary(JsonFile, SchemaFile);
+
+            if (anniversaries == null)
+                anniversaries = new List<Anniversary>();
+
+            return anniversaries!;
+        }
+        
 
         public void ListUpcomingAnniversary()
         {
@@ -107,7 +106,7 @@ namespace Anniversary_Minder
             Console.WriteLine("\nPress # from above list to entry.");
             Console.WriteLine("Press N to add a new anniversary.");
             Console.WriteLine("Press U to list upcoming anniversary.");
-            Console.WriteLine("Press X to quit.");
+            Console.WriteLine("Press X to quit.\n");
         }
 
         public string GetUserInput()
@@ -117,14 +116,13 @@ namespace Anniversary_Minder
             return inputCommand;
         }
 
-        private static bool ValidateItem(Anniversary item, string jsonSchema)
+        private static bool ValidateItem(in Anniversary item, in string jsonSchema)
         {
-            // Convert item object to a JSON string 
             string jsonData = JsonConvert.SerializeObject(item);
-
-            JSchema schema = JSchema.Parse(jsonSchema);
             JObject itemObj = JObject.Parse(jsonData);
+            JSchema schema = JSchema.Parse(jsonSchema);
+
             return itemObj.IsValid(schema);
-        } // end ValidateItem()
+        }
     }
 }

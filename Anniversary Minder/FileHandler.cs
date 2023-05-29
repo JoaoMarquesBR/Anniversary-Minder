@@ -13,16 +13,13 @@ namespace Anniversary_Minder
 {
     public class FileHandler
     {
-        const string SchemaFile = @"../../../../anniversary_schema.json";
-
-        public static void WriteLibToJsonFile(List<Anniversary> lib, string path)
+        public static void WriteLibToJsonFile(List<Anniversary> anniversaries, string path)
         {
-            string json = JsonConvert.SerializeObject(lib);
+            string json = JsonConvert.SerializeObject(anniversaries);
             File.WriteAllText(path, json);
         }
 
-        //TODO -> figure out how to properly desearialize the Address (currently not working)
-        public static List<Anniversary>? ReadJsonFileToLib(string path)
+        public static List<Anniversary>? ReadJsonToAnniversary(string path, in string SchemaFile)
         {
             try
             {
@@ -80,12 +77,11 @@ namespace Anniversary_Minder
             }
         }
 
-        //TODO -> still have to implement this when adding anniversary manually
-        public static bool ValidateAnniversaryData(string jsonData, string jsonSchema, out IList<string> messages)
+        public static bool ValidateAnniversaryData(in string jsonData, in string jsonSchema, out IList<string> messages)
         {
             JSchema schema = JSchema.Parse(jsonSchema);
-            JObject team = JObject.Parse(jsonData);
-            return team.IsValid(schema, out messages);
+            JObject anniv = JObject.Parse(jsonData);
+            return anniv.IsValid(schema, out messages);
         }
     }
 }
