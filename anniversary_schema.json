@@ -1,0 +1,60 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "JSON Schema for anniversary reminders",
+    "type": "object",
+    "properties": {
+        "Names": {
+            "type": "string",
+            "description": "The name or names of the celebrant(s)"
+        },
+        "AnniversaryDate": {
+            "type": "string",
+            "description": "The original date of the anniversary event",
+            "format": "date"
+        },
+        "AnniversaryType": {
+            "type": "string",
+            "description": "Explains what type of anniversary it is",
+            "enum": [ "birthday", "death", "graduation", "wedding", "other" ]
+        },
+        "Description": {
+            "type": "string",
+            "description": "An optional description of the anniversary"
+        },
+        "Email": {
+            "type": "string",
+            "description": "An email address for the celebrant(s)",
+            "format": "email"
+        },
+        "Phone": {
+            "type": "string",
+            "description": "A phone number to contact the celebrant(s)",
+            "pattern": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+        },
+        "Address": {
+            "type": "object",
+            "description": "A mailing address to contact the celebrant(s)",
+            "properties": {
+                "StreetAddress": {
+                    "type": "string",
+                    "description": "The number of a building along with the name of the road or street on which it is located"
+                },
+                "Municipality": {
+                    "type": "string",
+                    "description": "The official name for a town or city"
+                },
+                "Province": {
+                    "type": "string",
+                    "description": "A 2-character abbreviation for the province of residence",
+                    "enum": [ "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" ]
+                },
+                "PostalCode": {
+                    "type": "string",
+                    "description": "A Canadian postal code",
+                    "pattern": "[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]"
+                }
+            }
+        }
+    },
+    "required": ["Names", "AnniversaryDate", "AnniversaryType"]
+}  
