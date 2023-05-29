@@ -15,7 +15,7 @@ namespace Anniversary_Minder
     {
         const string SchemaFile = @"../../../../anniversary_schema.json";
 
-        public static void WriteLibToJsonFile(Anniversary lib, string path)
+        public static void WriteLibToJsonFile(List<Anniversary> lib, string path)
         {
             string json = JsonConvert.SerializeObject(lib);
             File.WriteAllText(path, json);

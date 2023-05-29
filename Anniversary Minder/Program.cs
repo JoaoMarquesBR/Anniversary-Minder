@@ -3,6 +3,7 @@
     internal class Program
     {
         const string JsonFile = @"../../../../anniversary.json";
+        const string lineSeparator = "-----------------------------------------------------------------------\n";
 
         static void Main(string[] args)
         {
@@ -10,12 +11,12 @@
             
             while (true)
             {
-                Console.WriteLine("-----------------------------------------------------------------------\n");
-                Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries");
-                Console.WriteLine("\n-----------------------------------------------------------------------");
+                Console.WriteLine(lineSeparator);
+                Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries\n");
+                Console.WriteLine(lineSeparator);
                 cm.DisplayAnniversaries(JsonFile);
                 cm.PrintCommandOptions();
-                Console.WriteLine("\n-----------------------------------------------------------------------");
+                Console.WriteLine(lineSeparator);
 
                 string command = cm.GetUserInput().ToLower();
                 command = command.Replace(" ", "");
@@ -24,8 +25,11 @@
                 {
                     case "n":
                         Anniversary anniversary =  cm.AddAnniversary();
-                        Address address =  cm.AddAddress();
-                        FileHandler.WriteLibToJsonFile(anniversary, JsonFile);
+                        anniversary.Address = cm.AddAddress();
+
+                        List<Anniversary> anniversaryList = FileHandler.ReadJsonFileToLib(JsonFile);
+                        anniversaryList.Add(anniversary);
+                        FileHandler.WriteLibToJsonFile(anniversaryList, JsonFile);
                         break;
 
                     case "u":
