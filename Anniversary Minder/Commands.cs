@@ -8,32 +8,32 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
-        public Anniversary AddNewAnniversary()
+        public Anniversary AddAnniversary()
         {
-            Anniversary aniv = new Anniversary();
+            Anniversary anniv = new Anniversary();
 
             Console.Write("Name: ");
-            aniv.Names = GetUserInput();
+            anniv.Names = GetUserInput();
 
-            Console.Write("Date: ");
-            aniv.Date = GetUserInput();
+            Console.Write("AnniversaryDate: ");
+            anniv.AnniversaryDate = GetUserInput();
 
-            Console.Write("Type: ");
-            aniv.Type = GetUserInput();
+            Console.Write("AnniversaryType: ");
+            anniv.AnniversaryType = GetUserInput();
 
             Console.Write("Description: ");
-            aniv.Description = GetUserInput();
+            anniv.Description = GetUserInput();
 
             Console.Write("Email: ");
-            aniv.Email = GetUserInput();
+            anniv.Email = GetUserInput();
 
             Console.Write("PhoneNumber: ");
-            aniv.PhoneNumber = GetUserInput();
+            anniv.PhoneNumber = GetUserInput();
 
-            return aniv;
+            return anniv;
         }
 
-        public Address AddNewAddress()
+        public Address AddAddress()
         {
             Address address = new Address();
 
@@ -50,6 +50,29 @@ namespace Anniversary_Minder
             address.PostalCode = GetUserInput();
 
             return address;
+        }
+
+        public void DisplayAnniversaries(string file)
+        {
+            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(file);
+
+            Console.WriteLine("\nName(s)\t\t\t\t\tDate\t\tType\n");
+
+            if (anniversaries != null)
+            {
+                int count = 1;
+                foreach (Anniversary anniv in anniversaries)
+                {
+                    Console.WriteLine($"{count}.{anniv.Names}\t\t\t\t\t{anniv.AnniversaryDate}\t{anniv.AnniversaryType}");
+                    count++;
+                }
+            }
+            else
+            {
+                anniversaries = new List<Anniversary>();
+            }
+
+            Console.WriteLine("\n-----------------------------------------------------------------------");
         }
 
         public void ListUpcomingAnniversary()

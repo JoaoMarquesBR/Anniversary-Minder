@@ -1,0 +1,32 @@
+[
+    {    
+        "Names":"Joao",
+        "AnniversaryDate":"10/10/2012",
+        "AnniversaryType":"birthday",
+        "Description":"My 21y birthday!",
+        "Email":"johnarmques.br200@Gmail.com",
+        "PhoneNumber":"15196154641",
+        "Address": 
+        {
+            "StreetAddress": "80 Speers Road",
+            "Municipality": "Oakville",
+            "Province": "ON",
+            "PostalCode": "L6H 3H5"
+        }
+    },
+    {
+        "Names":"Gui",
+        "AnniversaryDate":"10/10/2012",
+        "AnniversaryType":"birthday",
+        "Description":"My 24th birthday!",
+        "Email":"gui@gmail.com",
+        "PhoneNumber":"15196154641",
+        "Address":
+        {
+            "StreetAddress": "1130 Albert Street",
+            "Municipality": "London",
+            "Province": "ON",
+            "PostalCode": "N5W 5K6"
+        }
+    }
+]

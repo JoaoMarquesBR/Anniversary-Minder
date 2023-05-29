@@ -10,9 +10,9 @@ namespace Anniversary_Minder
     {
         public string Names { get; set; } = "";
 
-        public string Date { get; set; } = "";
+        public string AnniversaryDate { get; set; } = "";
 
-        public string Type { get; set; } = "";
+        public string AnniversaryType { get; set; } = "";
 
         public string? Description { get; set; }
 

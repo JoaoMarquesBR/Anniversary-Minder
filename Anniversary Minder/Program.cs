@@ -2,25 +2,29 @@
 {
     internal class Program
     {
-        const string JsonFile = @"..\..\..\..\anniversaries.json";
+        const string JsonFile = @"../../../../anniversary.json";
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-
             Commands cm = new Commands();
             
             while (true)
             {
+                Console.WriteLine("-----------------------------------------------------------------------\n");
+                Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries");
+                Console.WriteLine("\n-----------------------------------------------------------------------");
+                cm.DisplayAnniversaries(JsonFile);
                 cm.PrintCommandOptions();
-                Console.WriteLine("\n-------------------------------");
+                Console.WriteLine("\n-----------------------------------------------------------------------");
+
                 string command = cm.GetUserInput().ToLower();
                 command = command.Replace(" ", "");
+
                 switch (command)
                 {
                     case "n":
-                        Anniversary anniversary =  cm.AddNewAnniversary();
-                        Address address =  cm.AddNewAddress();
+                        Anniversary anniversary =  cm.AddAnniversary();
+                        Address address =  cm.AddAddress();
                         FileHandler.WriteLibToJsonFile(anniversary, JsonFile);
                         break;
 
