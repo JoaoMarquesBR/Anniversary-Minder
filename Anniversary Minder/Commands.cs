@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Schema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,29 +11,42 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
+        private const string jsonSchema = @"../../../../anniversary_schema.json";
+
         public Anniversary AddAnniversary()
         {
+            bool valid;
             Anniversary anniv = new Anniversary();
 
-            Console.Write("Name: ");
-            anniv.Names = GetUserInput();
+            do
+            {
+                Console.Write("Name: ");
+                anniv.Names = GetUserInput();
 
-            Console.Write("AnniversaryDate: ");
-            anniv.AnniversaryDate = GetUserInput();
+                Console.Write("AnniversaryDate: ");
+                anniv.AnniversaryDate = GetUserInput();
 
-            Console.Write("AnniversaryType: ");
-            anniv.AnniversaryType = GetUserInput();
+                Console.Write("AnniversaryType: ");
+                anniv.AnniversaryType = GetUserInput();
 
-            Console.Write("Description: ");
-            anniv.Description = GetUserInput();
+                Console.Write("Description: ");
+                anniv.Description = GetUserInput();
 
-            Console.Write("Email: ");
-            anniv.Email = GetUserInput();
+                Console.Write("Email: ");
+                anniv.Email = GetUserInput();
 
-            Console.Write("PhoneNumber: ");
-            anniv.PhoneNumber = GetUserInput();
+                Console.Write("PhoneNumber: ");
+                anniv.PhoneNumber = GetUserInput();
+
+                anniv.Address = AddAddress();
+
+                valid = ValidateItem(anniv, jsonSchema);
+
+            } while (valid == false);
 
             return anniv;
+
+
         }
 
         public Address AddAddress()
@@ -100,5 +116,15 @@ namespace Anniversary_Minder
 
             return inputCommand;
         }
+
+        private static bool ValidateItem(Anniversary item, string jsonSchema)
+        {
+            // Convert item object to a JSON string 
+            string jsonData = JsonConvert.SerializeObject(item);
+
+            JSchema schema = JSchema.Parse(jsonSchema);
+            JObject itemObj = JObject.Parse(jsonData);
+            return itemObj.IsValid(schema);
+        } // end ValidateItem()
     }
 }

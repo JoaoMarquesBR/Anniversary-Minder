@@ -25,7 +25,6 @@
                 {
                     case "n":
                         Anniversary anniversary =  cm.AddAnniversary();
-                        anniversary.Address = cm.AddAddress();
 
                         List<Anniversary> anniversaryList = FileHandler.ReadJsonFileToLib(JsonFile);
                         anniversaryList.Add(anniversary);
