@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +13,13 @@ namespace Anniversary_Minder
 {
     public class FileHandler
     {
-        const string SchemaFile = @"../../../../anniversary_schema.json";
-
-        //Gets current JSON and adds to It.
-        //no overriding!
-        public static void WriteLibToJsonFile(Anniversary lib, string path)
+        public static void WriteLibToJsonFile(List<Anniversary> anniversaries, string path)
         {
-            List<Anniversary> existingList = ReadJsonFileToLib(path);
-            existingList.Add(lib);
-            string json = JsonConvert.SerializeObject(existingList);
+            string json = JsonConvert.SerializeObject(anniversaries);
             File.WriteAllText(path, json);
         }
 
-        //TODO -> figure out how to properly desearialize the Address (currently not working)
-        public static List<Anniversary>? ReadJsonFileToLib(string path)
+        public static List<Anniversary>? ReadJsonToAnniversary(string path, in string SchemaFile)
         {
             try
             {
@@ -47,7 +40,7 @@ namespace Anniversary_Minder
                             }
                             else
                             {
-                                Console.WriteLine($"\nERROR:\tData file is invalid.\n");
+                                Console.WriteLine($"\nERROR:\tFile data is invalid.\n");
 
                                 // Report validation error messages
                                 foreach (string msg in messages)
@@ -69,7 +62,7 @@ namespace Anniversary_Minder
 
         // Attempts to read the json file specified by 'path' into the string 'json'
         // Returns 'true' if successful or 'false' if it fails
-        private static bool ReadFile(string path, out string json)
+        public static bool ReadFile(string path, out string json)
         {
             try
             {
@@ -84,12 +77,11 @@ namespace Anniversary_Minder
             }
         }
 
-        //TODO -> still have to implement this when adding anniversary manually
-        public static bool ValidateAnniversaryData(string jsonData, string jsonSchema, out IList<string> messages)
+        public static bool ValidateAnniversaryData(in string jsonData, in string jsonSchema, out IList<string> messages)
         {
             JSchema schema = JSchema.Parse(jsonSchema);
-            JObject team = JObject.Parse(jsonData);
-            return team.IsValid(schema, out messages);
+            JObject anniv = JObject.Parse(jsonData);
+            return anniv.IsValid(schema, out messages);
         }
     }
 }

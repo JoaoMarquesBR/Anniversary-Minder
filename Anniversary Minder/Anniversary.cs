@@ -22,10 +22,12 @@ namespace Anniversary_Minder
 
         public Address? Address { get; set; }
 
-        //Print main information of anniversary.
-        public void printInfo()
+        //TODO -> Implement an Update method
+
+        override
+        public string ToString()
         {
-            Console.WriteLine(AnniversaryDate + " | " + Names + " | " + AnniversaryType + " | " + Description + " | ");
+            return $"{Names}\t\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
         }
     }
 
@@ -39,5 +41,10 @@ namespace Anniversary_Minder
 
         public string? PostalCode;
 
+        override
+        public string ToString()
+        {
+            return $"{StreetAddress}, {Municipality} {Province}, {PostalCode}";
+        }
     }
 }

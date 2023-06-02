@@ -2,37 +2,36 @@
 {
     internal class Program
     {
-        const string JsonFile = @"../../../../anniversary.json";
+        private const string JsonFile = @"../../../../anniversary.json";
+        private const string SchemaFile = @"../../../../anniversary_schema.json";
 
         static void Main(string[] args)
         {
             Commands cm = new Commands();
-            
+
+            cm.DisplayHeader("All Anniversaries");
+
+            List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
+            cm.DisplayAnniversaries(anniversaryList);
+
+            cm.DisplayMainOptions();
+
             while (true)
             {
-                Console.WriteLine("-----------------------------------------------------------------------\n");
-                Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries");
-                Console.WriteLine("\n-----------------------------------------------------------------------");
-                cm.DisplayAnniversaries(JsonFile);
-                cm.PrintCommandOptions();
-                Console.WriteLine("\n-----------------------------------------------------------------------");
-
                 string command = cm.GetUserInput().ToLower();
                 command = command.Replace(" ", "");
 
                 switch (command)
                 {
                     case "n":
-                        Anniversary anniversary =  cm.AddAnniversary();
-                        Address address =  cm.AddAddress();
-                        anniversary.Address = address;
+                        Anniversary anniversary = cm.AddAnniversary(SchemaFile);
+                        anniversaryList.Add(anniversary);
 
-                        FileHandler.WriteLibToJsonFile(anniversary, JsonFile);
+                        FileHandler.WriteLibToJsonFile(anniversaryList, JsonFile);
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary(JsonFile);
-                        cm.offerUpdateAnniversary(JsonFile);
+                        cm.ListUpcomingAnniversary(anniversaryList);
                         break;
 
                     case "x":
@@ -40,7 +39,7 @@
                         break;
 
                     case "#":
-                        
+                        cm.DisplaySelectedAnniversary(anniversaryList);
                         break;
 
                    default:
