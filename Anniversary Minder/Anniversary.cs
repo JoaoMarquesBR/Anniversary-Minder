@@ -41,5 +41,10 @@ namespace Anniversary_Minder
 
         public string? PostalCode;
 
+        override
+        public string ToString()
+        {
+            return $"{StreetAddress}, {Municipality} {Province}, {PostalCode}";
+        }
     }
 }
