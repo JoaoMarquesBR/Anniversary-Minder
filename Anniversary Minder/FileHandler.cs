@@ -15,9 +15,13 @@ namespace Anniversary_Minder
     {
         const string SchemaFile = @"../../../../anniversary_schema.json";
 
+        //Gets current JSON and adds to It.
+        //no overriding!
         public static void WriteLibToJsonFile(Anniversary lib, string path)
         {
-            string json = JsonConvert.SerializeObject(lib);
+            List<Anniversary> existingList = ReadJsonFileToLib(path);
+            existingList.Add(lib);
+            string json = JsonConvert.SerializeObject(existingList);
             File.WriteAllText(path, json);
         }
 

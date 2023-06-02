@@ -25,11 +25,14 @@
                     case "n":
                         Anniversary anniversary =  cm.AddAnniversary();
                         Address address =  cm.AddAddress();
+                        anniversary.Address = address;
+
                         FileHandler.WriteLibToJsonFile(anniversary, JsonFile);
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary();
+                        cm.ListUpcomingAnniversary(JsonFile);
+                        cm.offerUpdateAnniversary(JsonFile);
                         break;
 
                     case "x":
