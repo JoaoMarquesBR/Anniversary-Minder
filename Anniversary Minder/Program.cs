@@ -4,21 +4,17 @@
     {
         private const string JsonFile = @"../../../../anniversary.json";
         private const string SchemaFile = @"../../../../anniversary_schema.json";
-        private const string lineSeparator = "-----------------------------------------------------------------------\n";
 
         static void Main(string[] args)
         {
             Commands cm = new Commands();
 
-            Console.WriteLine(lineSeparator);
-            Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries\n");
-            Console.WriteLine(lineSeparator);
+            cm.DisplayHeader("All Anniversaries");
 
             List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
             cm.DisplayAnniversaries(anniversaryList);
 
-            cm.PrintCommandOptions();
-            Console.WriteLine(lineSeparator);
+            cm.DisplayMainOptions();
 
             while (true)
             {
@@ -43,7 +39,7 @@
                         break;
 
                     case "#":
-                        cm.OfferUpdateAnniversary(anniversaryList);
+                        cm.DisplaySelectedAnniversary(anniversaryList);
                         break;
 
                    default:
