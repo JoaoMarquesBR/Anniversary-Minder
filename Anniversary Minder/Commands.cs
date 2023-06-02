@@ -78,6 +78,7 @@ namespace Anniversary_Minder
         public void ListUpcomingAnniversary()
         {
             Console.WriteLine("Upcoming anniversary");
+
         }
 
         public void Quit()
