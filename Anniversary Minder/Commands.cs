@@ -16,8 +16,8 @@ namespace Anniversary_Minder
         public Anniversary AddAnniversary(in string SchemaFile)
         {
             Anniversary anniv = new Anniversary();
-            bool valid;
 
+            bool valid;
             do
             {
                 Console.Write("Name: ");
@@ -66,6 +66,15 @@ namespace Anniversary_Minder
             return address;
         }
 
+        private static bool ValidateItem(in Anniversary item, in string jsonSchema)
+        {
+            string jsonData = JsonConvert.SerializeObject(item);
+            JObject itemObj = JObject.Parse(jsonData);
+            JSchema schema = JSchema.Parse(jsonSchema);
+
+            return itemObj.IsValid(schema);
+        }
+
         public void DisplayAnniversaries(in List<Anniversary> anniversaries)
         {
             Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType\n");
@@ -73,13 +82,12 @@ namespace Anniversary_Minder
             int count = 1;
             foreach (Anniversary anniv in anniversaries)
             {
-                Console.WriteLine($"{count}.{anniv.Names}\t\t\t\t\t{anniv.AnniversaryDate}\t{anniv.AnniversaryType}");
+                Console.WriteLine($"{count}. {anniv.ToString()}");
                 count++;
             }
 
             Console.WriteLine("\n-----------------------------------------------------------------------");
         }
-
 
         public List<Anniversary> GetAnniversaries(in string JsonFile, in string SchemaFile)
         {
@@ -90,53 +98,46 @@ namespace Anniversary_Minder
 
             return anniversaries!;
         }
-        
 
-        public void ListUpcomingAnniversary(string path)
+        //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose
+        // which anniversary he wants to see, and we also need to give them the
+        // options to Edit, Delete and Return (to the list of anniversaries)
+        public void ListUpcomingAnniversary(in List<Anniversary> anniversaries)
         {
-            Console.WriteLine("Upcoming anniversary");
-            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(path);
-            for(int i=0;i<anniversaries.Count;i++)
-            {
-                Console.Write((i+1)+": ");
-                anniversaries[i].printInfo();
-            }
+            
         }
 
-        public void offerUpdateAnniversary(string path)
+        public void OfferUpdateAnniversary(in List<Anniversary> anniversaries)
         {
-            Console.Write("Would you like to update any of these birthday?[Y/N]: ");
+            Console.Write("Would you like to update any of these birthday? [Y/N]: ");
             string input = Console.ReadLine() ?? "";
+
             if (input.Contains("y", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine("Select ID: ");
-                input = Console.ReadLine();
-                if (int.TryParse(input, out int idInputOuter))
+                input = Console.ReadLine() ?? "";
+                if (int.TryParse(input, out int annivIndex))
                 {
-                    updateAnniversary(idInputOuter, path);
-
+                    UpdateAnniversary(anniversaries, annivIndex);
                 }
                 else
                 {
                     Console.WriteLine("Error: Wrong input");
-                    Console.WriteLine("Expected: Intenge");
+                    Console.WriteLine("Expected: Integer");
 
                 }
             }
         }
 
-        public void updateAnniversary(int updateIndex,string path)
+        public void UpdateAnniversary(in List<Anniversary> anniversaries, int updateIndex)
         {
-            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(path);
-            Console.Write("Updating ");
-            anniversaries[updateIndex].printInfo();
+            
         }
 
         public void Quit()
         {
             Console.WriteLine("Quit");
         }
-
 
         public void PrintCommandOptions()
         {
@@ -148,18 +149,7 @@ namespace Anniversary_Minder
 
         public string GetUserInput()
         {
-            string inputCommand = Console.ReadLine() ?? "";
-
-            return inputCommand;
-        }
-
-        private static bool ValidateItem(in Anniversary item, in string jsonSchema)
-        {
-            string jsonData = JsonConvert.SerializeObject(item);
-            JObject itemObj = JObject.Parse(jsonData);
-            JSchema schema = JSchema.Parse(jsonSchema);
-
-            return itemObj.IsValid(schema);
+            return Console.ReadLine() ?? "";
         }
     }
 }

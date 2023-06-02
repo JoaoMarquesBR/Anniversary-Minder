@@ -1,4 +1,4 @@
-namespace Anniversary_Minder
+﻿namespace Anniversary_Minder
 {
     internal class Program
     {
@@ -9,19 +9,19 @@ namespace Anniversary_Minder
         static void Main(string[] args)
         {
             Commands cm = new Commands();
-            
+
+            Console.WriteLine(lineSeparator);
+            Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries\n");
+            Console.WriteLine(lineSeparator);
+
+            List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
+            cm.DisplayAnniversaries(anniversaryList);
+
+            cm.PrintCommandOptions();
+            Console.WriteLine(lineSeparator);
+
             while (true)
             {
-                Console.WriteLine(lineSeparator);
-                Console.WriteLine("\t\tANNIVERSARY MINDER ~ All Anniversaries\n");
-                Console.WriteLine(lineSeparator);
-
-                List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
-                cm.DisplayAnniversaries(anniversaryList);
-
-                cm.PrintCommandOptions();
-                Console.WriteLine(lineSeparator);
-
                 string command = cm.GetUserInput().ToLower();
                 command = command.Replace(" ", "");
 
@@ -35,8 +35,7 @@ namespace Anniversary_Minder
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary(JsonFile);
-                        cm.offerUpdateAnniversary(JsonFile);
+                        cm.ListUpcomingAnniversary(anniversaryList);
                         break;
 
                     case "x":
@@ -44,7 +43,7 @@ namespace Anniversary_Minder
                         break;
 
                     case "#":
-                        
+                        cm.OfferUpdateAnniversary(anniversaryList);
                         break;
 
                    default:
