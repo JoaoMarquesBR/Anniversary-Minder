@@ -196,7 +196,6 @@ namespace Anniversary_Minder
         {
             Console.WriteLine("\nPress E to edit this anniversary.");
             Console.WriteLine("Press D to delete this anniversary.");
-            Console.WriteLine("Press E to edit this anniversary.");
             Console.WriteLine("Press M to return to the main menu.\n");
             Console.WriteLine(lineSeparator);
         }
