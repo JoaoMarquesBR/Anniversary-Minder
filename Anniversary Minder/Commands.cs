@@ -83,6 +83,8 @@ namespace Anniversary_Minder
             return address;
         }
 
+
+
         private static bool ValidateItem(in Anniversary item, in string jsonSchema, out IList<string> messages)
         {
             string jsonData = JsonConvert.SerializeObject(item);
@@ -91,6 +93,8 @@ namespace Anniversary_Minder
 
             return itemObj.IsValid(schema, out messages);
         }
+
+
 
         public List<Anniversary> GetAnniversaries(in string JsonFile, in string SchemaFile)
         {
@@ -101,6 +105,8 @@ namespace Anniversary_Minder
 
             return anniversaries!;
         }
+
+
 
         public void DisplayAnniversaries(in List<Anniversary> anniversaries)
         {
