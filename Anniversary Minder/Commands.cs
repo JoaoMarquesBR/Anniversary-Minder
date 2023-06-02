@@ -23,6 +23,8 @@ namespace Anniversary_Minder
             {
                 do
                 {
+                    Console.WriteLine("\nPlease key-in values for the following fields...\n");
+
                     Console.Write("Name: ");
                     anniv.Names = GetUserInput();
 
