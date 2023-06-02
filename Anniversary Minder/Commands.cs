@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -117,14 +116,14 @@ namespace Anniversary_Minder
             return anniversaries!;
         }
 
-        //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose
-        // which anniversary he wants to see, and we also need to give them the
-        // options to Edit, Delete and Return (to the list of anniversaries)
         public void ListUpcomingAnniversary(in List<Anniversary> anniversaries)
         {
             
         }
 
+        //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose
+        // which anniversary he wants to see, and we also need to give them the
+        // options to Edit, Delete and Return (to the list of anniversaries)
         public void OfferUpdateAnniversary(in List<Anniversary> anniversaries)
         {
             Console.Write("Would you like to update any of these birthday? [Y/N]: ");
