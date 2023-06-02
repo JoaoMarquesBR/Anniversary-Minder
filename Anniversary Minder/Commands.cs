@@ -18,31 +18,47 @@ namespace Anniversary_Minder
             Anniversary anniv = new Anniversary();
 
             bool valid;
-            do
+
+            if (FileHandler.ReadFile(SchemaFile, out string jsonSchema))
             {
-                Console.Write("Name: ");
-                anniv.Names = GetUserInput();
+                do
+                {
+                    Console.Write("Name: ");
+                    anniv.Names = GetUserInput();
 
-                Console.Write("AnniversaryDate: ");
-                anniv.AnniversaryDate = GetUserInput();
+                    Console.Write("AnniversaryDate: ");
+                    anniv.AnniversaryDate = GetUserInput();
 
-                Console.Write("AnniversaryType: ");
-                anniv.AnniversaryType = GetUserInput();
+                    Console.Write("AnniversaryType: ");
+                    anniv.AnniversaryType = GetUserInput();
 
-                Console.Write("Description: ");
-                anniv.Description = GetUserInput();
+                    Console.Write("Description: ");
+                    anniv.Description = GetUserInput();
 
-                Console.Write("Email: ");
-                anniv.Email = GetUserInput();
+                    Console.Write("Email: ");
+                    anniv.Email = GetUserInput();
 
-                Console.Write("PhoneNumber: ");
-                anniv.PhoneNumber = GetUserInput();
+                    Console.Write("PhoneNumber: ");
+                    anniv.PhoneNumber = GetUserInput();
 
-                anniv.Address = AddAddress();
+                    anniv.Address = AddAddress();
 
-                valid = ValidateItem(anniv, SchemaFile);
+                    valid = ValidateItem(anniv, jsonSchema, out IList<string> messages);
 
-            } while (valid == false);
+                    if (messages != null)
+                    {
+                        Console.WriteLine($"\nERROR:\tInvalid anniversary information entered.\n");
+
+                        // Report validation error messages
+                        foreach (string msg in messages)
+                            Console.WriteLine($"\t{msg}");
+
+                        Console.WriteLine($"\nEnter the information again with valid data.\n");
+
+                    }
+
+                } while (valid == false);
+            }
 
             return anniv;
         }
@@ -66,13 +82,13 @@ namespace Anniversary_Minder
             return address;
         }
 
-        private static bool ValidateItem(in Anniversary item, in string jsonSchema)
+        private static bool ValidateItem(in Anniversary item, in string jsonSchema, out IList<string> messages)
         {
             string jsonData = JsonConvert.SerializeObject(item);
             JObject itemObj = JObject.Parse(jsonData);
             JSchema schema = JSchema.Parse(jsonSchema);
 
-            return itemObj.IsValid(schema);
+            return itemObj.IsValid(schema, out messages);
         }
 
         public void DisplayAnniversaries(in List<Anniversary> anniversaries)

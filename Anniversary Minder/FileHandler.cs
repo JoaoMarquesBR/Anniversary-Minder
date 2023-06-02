@@ -40,7 +40,7 @@ namespace Anniversary_Minder
                             }
                             else
                             {
-                                Console.WriteLine($"\nERROR:\tData file is invalid.\n");
+                                Console.WriteLine($"\nERROR:\tFile data is invalid.\n");
 
                                 // Report validation error messages
                                 foreach (string msg in messages)
@@ -62,7 +62,7 @@ namespace Anniversary_Minder
 
         // Attempts to read the json file specified by 'path' into the string 'json'
         // Returns 'true' if successful or 'false' if it fails
-        private static bool ReadFile(string path, out string json)
+        public static bool ReadFile(string path, out string json)
         {
             try
             {
