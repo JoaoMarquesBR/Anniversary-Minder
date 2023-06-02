@@ -12,14 +12,15 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
+        private const string lineSeparator = "-----------------------------------------------------------------------";
+
         public Anniversary AddAnniversary(in string SchemaFile)
         {
             Anniversary anniv = new Anniversary();
 
-            bool valid;
-
             if (FileHandler.ReadFile(SchemaFile, out string jsonSchema))
             {
+                bool valid;
                 do
                 {
                     Console.WriteLine("\nPlease key-in values for the following fields...\n");
@@ -57,7 +58,6 @@ namespace Anniversary_Minder
                         Console.WriteLine($"\nEnter the information again with valid data.\n");
 
                     }
-
                 } while (valid == false);
             }
 
@@ -92,20 +92,6 @@ namespace Anniversary_Minder
             return itemObj.IsValid(schema, out messages);
         }
 
-        public void DisplayAnniversaries(in List<Anniversary> anniversaries)
-        {
-            Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType\n");
-
-            int count = 1;
-            foreach (Anniversary anniv in anniversaries)
-            {
-                Console.WriteLine($"{count}. {anniv.ToString()}");
-                count++;
-            }
-
-            Console.WriteLine("\n-----------------------------------------------------------------------");
-        }
-
         public List<Anniversary> GetAnniversaries(in string JsonFile, in string SchemaFile)
         {
             List<Anniversary>? anniversaries = FileHandler.ReadJsonToAnniversary(JsonFile, SchemaFile);
@@ -114,6 +100,43 @@ namespace Anniversary_Minder
                 anniversaries = new List<Anniversary>();
 
             return anniversaries!;
+        }
+
+        public void DisplayAnniversaries(in List<Anniversary> anniversaries)
+        {
+            Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType");
+            Console.WriteLine(lineSeparator + "\n");
+
+            int count = 1;
+            foreach (Anniversary anniv in anniversaries)
+            {
+                Console.WriteLine($"{count}. {anniv.ToString()}");
+                count++;
+            }
+
+            Console.WriteLine("\n" + lineSeparator);
+        }
+
+        public void DisplaySelectedAnniversary(in List<Anniversary> anniversaries)
+        {
+            Console.Write("\nPress a number from the above list to entry -> ");
+            int index = Convert.ToInt32(GetUserInput()) - 1;
+
+            Console.WriteLine();
+            DisplayHeader("Selected Anniversary");
+
+            Console.WriteLine();
+            Console.WriteLine("Names: " + anniversaries[index].Names);
+            Console.WriteLine("Date: " + anniversaries[index].AnniversaryDate);
+            Console.WriteLine("Type: " + anniversaries[index].Names);
+            Console.WriteLine("Description: " + anniversaries[index].Description);
+            Console.WriteLine("Email: " + anniversaries[index].Email);
+            Console.WriteLine("Phone: " + anniversaries[index].PhoneNumber);
+            Console.WriteLine("Address: " + anniversaries[index].Address.ToString());
+            Console.WriteLine();
+
+            Console.WriteLine(lineSeparator);
+            DisplaySelectedOptions();
         }
 
         public void ListUpcomingAnniversary(in List<Anniversary> anniversaries)
@@ -151,17 +174,36 @@ namespace Anniversary_Minder
             
         }
 
-        public void Quit()
+        
+
+        public void DisplayHeader(string headerInfo)
         {
-            Console.WriteLine("Quit");
+            Console.WriteLine(lineSeparator);
+            Console.WriteLine($"\n\t\tANNIVERSARY MINDER ~ {headerInfo}\n");
+            Console.WriteLine(lineSeparator);
         }
 
-        public void PrintCommandOptions()
+        public void DisplayMainOptions()
         {
-            Console.WriteLine("\nPress # from above list to entry.");
+            Console.WriteLine("\nPress # to choose an anniversary to view.");
             Console.WriteLine("Press N to add a new anniversary.");
             Console.WriteLine("Press U to list upcoming anniversary.");
             Console.WriteLine("Press X to quit.\n");
+            Console.WriteLine(lineSeparator);
+        }
+
+        public void DisplaySelectedOptions()
+        {
+            Console.WriteLine("\nPress E to edit this anniversary.");
+            Console.WriteLine("Press D to delete this anniversary.");
+            Console.WriteLine("Press E to edit this anniversary.");
+            Console.WriteLine("Press M to return to the main menu.\n");
+            Console.WriteLine(lineSeparator);
+        }
+
+        public void Quit()
+        {
+            Console.WriteLine("Quit");
         }
 
         public string GetUserInput()
