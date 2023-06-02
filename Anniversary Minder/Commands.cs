@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,10 +77,44 @@ namespace Anniversary_Minder
             Console.WriteLine("\n-----------------------------------------------------------------------");
         }
 
-        public void ListUpcomingAnniversary()
+        public void ListUpcomingAnniversary(string path)
         {
             Console.WriteLine("Upcoming anniversary");
+            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(path);
+            for(int i=0;i<anniversaries.Count;i++)
+            {
+                Console.Write((i+1)+": ");
+                anniversaries[i].printInfo();
+            }
+        }
 
+        public void offerUpdateAnniversary(string path)
+        {
+            Console.Write("Would you like to update any of these birthday?[Y/N]: ");
+            string input = Console.ReadLine() ?? "";
+            if (input.Contains("y", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Select ID: ");
+                input = Console.ReadLine();
+                if (int.TryParse(input, out int idInputOuter))
+                {
+                    updateAnniversary(idInputOuter, path);
+
+                }
+                else
+                {
+                    Console.WriteLine("Error: Wrong input");
+                    Console.WriteLine("Expected: Intenge");
+
+                }
+            }
+        }
+
+        public void updateAnniversary(int updateIndex,string path)
+        {
+            List<Anniversary>? anniversaries = FileHandler.ReadJsonFileToLib(path);
+            Console.Write("Updating ");
+            anniversaries[updateIndex].printInfo();
         }
 
         public void Quit()

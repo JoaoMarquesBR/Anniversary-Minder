@@ -31,7 +31,8 @@
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary();
+                        cm.ListUpcomingAnniversary(JsonFile);
+                        cm.offerUpdateAnniversary(JsonFile);
                         break;
 
                     case "x":

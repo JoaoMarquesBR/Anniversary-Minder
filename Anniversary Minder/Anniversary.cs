@@ -21,6 +21,12 @@ namespace Anniversary_Minder
         public string? PhoneNumber { get; set; }
 
         public Address? Address { get; set; }
+
+        //Print main information of anniversary.
+        public void printInfo()
+        {
+            Console.WriteLine(AnniversaryDate + " | " + Names + " | " + AnniversaryType + " | " + Description + " | ");
+        }
     }
 
     public struct Address
@@ -32,5 +38,6 @@ namespace Anniversary_Minder
         public string? Province;
 
         public string? PostalCode;
+
     }
 }
