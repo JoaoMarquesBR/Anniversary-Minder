@@ -44,7 +44,7 @@ namespace Anniversary_Minder
         override
         public string ToString()
         {
-            return $"{StreetAddress}, {Municipality} {Province}, {PostalCode}";
+            return $"{StreetAddress,-5}, {Municipality} {Province}, {PostalCode}";
         }
     }
 }
