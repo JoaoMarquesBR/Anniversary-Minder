@@ -192,26 +192,29 @@ namespace Anniversary_Minder
 
         public void EditAnniversary(in List<Anniversary> anniversaries, int editIndex)
         {
+            DisplayHeader("Edit Selected Anniversary");
+            Console.WriteLine("\nKEY-IN NEW values for any field, or PRESS ENTER to accept the current field value...\n");
+
             Console.Write($"Names(s) \"{anniversaries[editIndex].Names}\": ");
-            anniversaries[editIndex].Names = GetUserInput();
+            anniversaries[editIndex].Names = Console.ReadLine() ?? anniversaries[editIndex].Names;
             Console.Write($"Anniversary Type \"{anniversaries[editIndex].AnniversaryType}\": ");
-            anniversaries[editIndex].AnniversaryType = GetUserInput();
+            anniversaries[editIndex].AnniversaryType = Console.ReadLine() ?? anniversaries[editIndex].AnniversaryType;
             Console.Write($"Description \"{anniversaries[editIndex].Description}\": ");
-            anniversaries[editIndex].Description = GetUserInput();
+            anniversaries[editIndex].Description = Console.ReadLine() ?? anniversaries[editIndex].Description;
             Console.Write($"Anniversary Date \"{anniversaries[editIndex].AnniversaryDate}\": ");
-            anniversaries[editIndex].AnniversaryDate = GetUserInput();
+            anniversaries[editIndex].AnniversaryDate = Console.ReadLine() ?? anniversaries[editIndex].AnniversaryDate;
             Console.Write($"Email \"{anniversaries[editIndex].Email}\": ");
-            anniversaries[editIndex].Email = GetUserInput();
+            anniversaries[editIndex].Email = Console.ReadLine() ?? anniversaries[editIndex].Email;
             Console.Write($"Phone # \"{anniversaries[editIndex].PhoneNumber}\": ");
-            anniversaries[editIndex].PhoneNumber = GetUserInput();
+            anniversaries[editIndex].PhoneNumber = Console.ReadLine() ?? anniversaries[editIndex].PhoneNumber;
             Console.Write($"Street Address \"{anniversaries[editIndex].Address.StreetAddress}\": ");
-            anniversaries[editIndex].Address.StreetAddress = GetUserInput();
+            anniversaries[editIndex].Address.StreetAddress = Console.ReadLine() ?? anniversaries[editIndex].Address.StreetAddress;
             Console.Write($"Municipality \"{anniversaries[editIndex].Address.Municipality}\": ");
-            anniversaries[editIndex].Address.Municipality = GetUserInput();
+            anniversaries[editIndex].Address.Municipality = Console.ReadLine() ?? anniversaries[editIndex].Address.Municipality;
             Console.Write($"Province \"{anniversaries[editIndex].Address.Province}\": ");
-            anniversaries[editIndex].Address.Province = GetUserInput();
+            anniversaries[editIndex].Address.Province = Console.ReadLine() ?? anniversaries[editIndex].Address.Province;
             Console.Write($"PostalCode \"{anniversaries[editIndex].Address.PostalCode}\": ");
-            anniversaries[editIndex].Address.PostalCode = GetUserInput();
+            anniversaries[editIndex].Address.PostalCode = Console.ReadLine() ?? anniversaries[editIndex].Address.PostalCode;
 
             RedirectToMainMenu(anniversaries);
         }
