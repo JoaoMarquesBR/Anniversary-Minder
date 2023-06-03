@@ -10,7 +10,7 @@
         "AnniversaryDate": {
             "type": "string",
             "description": "The original date of the anniversary event",
-            "pattern": "^((\\d{2})|(\\d))\/((\\d{2})|(\\d))\/((\\d{4})|(\\d{2}))$"
+            "pattern": "^((\\d{4})|(\\d{2}))\/((\\d{2})|(\\d))\/((\\d{2})|(\\d))$"
         },              
         "AnniversaryType": {
             "type": "string",
