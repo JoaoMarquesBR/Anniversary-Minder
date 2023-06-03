@@ -42,7 +42,10 @@ namespace Anniversary_Minder
         override
         public string ToString()
         {
-            return $"{StreetAddress}, {Municipality} {Province}, {PostalCode}";
+            return $"{(!string.IsNullOrEmpty(StreetAddress) ? StreetAddress + " " : "")}" +
+                   $"{(!string.IsNullOrEmpty(Municipality)  ? Municipality  + " " : "")}" +
+                   $"{(!string.IsNullOrEmpty(Province)      ? Province      + " " : "")}" +
+                   $"{(!string.IsNullOrEmpty(PostalCode)    ? PostalCode    + " " : "")}";
         }
     }
 }
