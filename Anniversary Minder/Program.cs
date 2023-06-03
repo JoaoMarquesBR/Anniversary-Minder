@@ -27,7 +27,7 @@
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary(anniversaryList);
+                        cm.DisplayUpcomingAnniversary(anniversaryList);
                         break;
 
                     case "x":
