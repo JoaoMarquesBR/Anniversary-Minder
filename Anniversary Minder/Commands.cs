@@ -165,7 +165,7 @@ namespace Anniversary_Minder
 
                 TimeSpan difference = nivDate - todayDate;
 
-                if (difference.Days <= 14 && difference.Days >=0 )
+                if (difference.Days <= 14 && difference.Days >= 0 )
                 {
                     map.Add(i,nivDate);
                 }
@@ -283,7 +283,7 @@ namespace Anniversary_Minder
 
         public void Quit()
         {
-            Console.WriteLine("Quit");
+            Environment.Exit(0);
         }
 
         public string GetUserInput()
