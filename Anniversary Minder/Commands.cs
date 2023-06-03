@@ -187,6 +187,7 @@ namespace Anniversary_Minder
             {
             }
             Console.ReadKey();
+            RedirectToMainMenu(anniversaries);
         }
 
         //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose
