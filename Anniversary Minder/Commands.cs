@@ -132,9 +132,9 @@ namespace Anniversary_Minder
             DisplayHeader("Selected Anniversary");
 
             Console.WriteLine();
-            Console.WriteLine("Names: " + anniversaries[index].Names);
+            Console.WriteLine("Name(s): " + anniversaries[index].Names);
             Console.WriteLine("Date: " + anniversaries[index].AnniversaryDate);
-            Console.WriteLine("Type: " + anniversaries[index].Names);
+            Console.WriteLine("Type: " + anniversaries[index].AnniversaryType);
             Console.WriteLine("Description: " + anniversaries[index].Description);
             Console.WriteLine("Email: " + anniversaries[index].Email);
             Console.WriteLine("Phone: " + anniversaries[index].PhoneNumber);
