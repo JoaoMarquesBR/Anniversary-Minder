@@ -20,7 +20,7 @@ namespace Anniversary_Minder
 
         public string? PhoneNumber { get; set; }
 
-        public Address? Address { get; set; }
+        public Address Address { get; set; } = new Address();
 
         //TODO -> Implement an Update method
 
@@ -30,8 +30,8 @@ namespace Anniversary_Minder
             return $"{Names}\t\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
         }
     }
-
-    public struct Address
+    
+    public class Address
     {
         public string? StreetAddress;
 

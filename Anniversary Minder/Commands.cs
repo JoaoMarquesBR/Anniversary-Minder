@@ -47,7 +47,8 @@ namespace Anniversary_Minder
 
                     valid = ValidateItem(anniv, jsonSchema, out IList<string> messages);
 
-                    if (messages != null && messages.Count>=0)
+
+                    if (messages.Count > 0)
                     {
                         Console.WriteLine($"\nERROR:\tInvalid anniversary information entered.\n");
 
@@ -143,6 +144,14 @@ namespace Anniversary_Minder
 
             Console.WriteLine(lineSeparator);
             DisplaySelectedOptions();
+
+            string selectedOption = GetUserInput();
+            if (selectedOption.Equals("E", StringComparison.OrdinalIgnoreCase))
+                EditAnniversary(anniversaries, index);
+            else if (selectedOption.Equals("D", StringComparison.OrdinalIgnoreCase))
+                DeleteAnniversary(anniversaries, index);
+            else if (selectedOption.Equals("M", StringComparison.OrdinalIgnoreCase))
+                RedirectToMainMenu(anniversaries);
         }
 
         public void DisplayUpcomingAnniversary(in List<Anniversary> anniversaries)
@@ -210,16 +219,55 @@ namespace Anniversary_Minder
             
         }
 
-        
+        public void EditAnniversary(in List<Anniversary> anniversaries, int editIndex)
+        {
+            Console.Write($"Names(s) \"{anniversaries[editIndex].Names}\": ");
+            anniversaries[editIndex].Names = GetUserInput();
+            Console.Write($"Anniversary Type \"{anniversaries[editIndex].AnniversaryType}\": ");
+            anniversaries[editIndex].AnniversaryType = GetUserInput();
+            Console.Write($"Description \"{anniversaries[editIndex].Description}\": ");
+            anniversaries[editIndex].Description = GetUserInput();
+            Console.Write($"Anniversary Date \"{anniversaries[editIndex].AnniversaryDate}\": ");
+            anniversaries[editIndex].AnniversaryDate = GetUserInput();
+            Console.Write($"Email \"{anniversaries[editIndex].Email}\": ");
+            anniversaries[editIndex].Email = GetUserInput();
+            Console.Write($"Phone # \"{anniversaries[editIndex].PhoneNumber}\": ");
+            anniversaries[editIndex].PhoneNumber = GetUserInput();
+            Console.Write($"Street Address \"{anniversaries[editIndex].Address.StreetAddress}\": ");
+            anniversaries[editIndex].Address.StreetAddress = GetUserInput();
+            Console.Write($"Municipality \"{anniversaries[editIndex].Address.Municipality}\": ");
+            anniversaries[editIndex].Address.Municipality = GetUserInput();
+            Console.Write($"Province \"{anniversaries[editIndex].Address.Province}\": ");
+            anniversaries[editIndex].Address.Province = GetUserInput();
+            Console.Write($"PostalCode \"{anniversaries[editIndex].Address.PostalCode}\": ");
+            anniversaries[editIndex].Address.PostalCode = GetUserInput();
 
-        public void DisplayHeader(string headerInfo)
+            RedirectToMainMenu(anniversaries);
+        }
+
+        public void DeleteAnniversary(in List<Anniversary> anniversaries, int deleteIndex)
+        {
+            anniversaries.Remove(anniversaries[deleteIndex]);
+            RedirectToMainMenu(anniversaries);
+        }
+
+        public void RedirectToMainMenu(in List<Anniversary> anniversaries)
+        {
+            DisplayHeader("All Anniversaries");
+            DisplayAnniversaries(anniversaries);
+            DisplayMainOptions();
+        }
+
+
+
+        private void DisplayHeader(string headerInfo)
         {
             Console.WriteLine(lineSeparator);
             Console.WriteLine($"\n\t\tANNIVERSARY MINDER ~ {headerInfo}\n");
             Console.WriteLine(lineSeparator);
         }
 
-        public void DisplayMainOptions()
+        private void DisplayMainOptions()
         {
             Console.WriteLine("\nPress # to choose an anniversary to view.");
             Console.WriteLine("Press N to add a new anniversary.");
@@ -228,7 +276,7 @@ namespace Anniversary_Minder
             Console.WriteLine(lineSeparator);
         }
 
-        public void DisplaySelectedOptions()
+        private void DisplaySelectedOptions()
         {
             Console.WriteLine("\nPress E to edit this anniversary.");
             Console.WriteLine("Press D to delete this anniversary.");
