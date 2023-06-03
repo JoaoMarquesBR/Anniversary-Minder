@@ -24,7 +24,8 @@
         "Email": {
             "type": "string",
             "description": "An email address for the celebrant(s)",
-            "format": "email"
+            "optional": true,
+            "format": "email, omitempty"
         },
         "Phone": {
             "type": "string",
@@ -46,12 +47,12 @@
                 "Province": {
                     "type": "string",
                     "description": "A 2-character abbreviation for the province of residence",
-                    "enum": [ "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT" ]
+                    "enum": [ "AB", "BC", "MB", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT", "" ]
                 },
                 "PostalCode": {
                     "type": "string",
                     "description": "A Canadian postal code",
-                    "pattern": "[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]"
+                    "pattern": "^(?:[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9])?$"
                 }
             }
         }
