@@ -47,7 +47,6 @@ namespace Anniversary_Minder
 
                     valid = ValidateItem(anniv, jsonSchema, out IList<string> messages);
 
-
                     if (messages.Count > 0)
                     {
                         Console.WriteLine($"\nERROR:\tInvalid anniversary information entered.\n");
@@ -61,6 +60,8 @@ namespace Anniversary_Minder
                     }
                 } while (valid == false);
             }
+
+            Console.WriteLine();
 
             return anniv;
         }

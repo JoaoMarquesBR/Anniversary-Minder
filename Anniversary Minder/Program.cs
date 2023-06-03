@@ -24,6 +24,7 @@
                         anniversaryList.Add(anniversary);
 
                         FileHandler.WriteLibToJsonFile(anniversaryList, JsonFile);
+                        cm.RedirectToMainMenu(anniversaryList);
                         break;
 
                     case "u":
