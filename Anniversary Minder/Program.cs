@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        private const string JsonFile = @"../../../../anniversary.json";
+        public const string JsonFile = @"../../../../anniversary.json";
         private const string SchemaFile = @"../../../../anniversary_schema.json";
 
         static void Main(string[] args)

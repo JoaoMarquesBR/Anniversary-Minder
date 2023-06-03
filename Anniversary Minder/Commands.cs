@@ -219,6 +219,7 @@ namespace Anniversary_Minder
         public void DeleteAnniversary(in List<Anniversary> anniversaries, int deleteIndex)
         {
             anniversaries.Remove(anniversaries[deleteIndex]);
+            FileHandler.WriteLibToJsonFile(anniversaries,Program.JsonFile);
             RedirectToMainMenu(anniversaries);
         }
 
