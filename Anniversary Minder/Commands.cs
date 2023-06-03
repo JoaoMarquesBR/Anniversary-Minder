@@ -61,8 +61,6 @@ namespace Anniversary_Minder
                 } while (valid == false);
             }
 
-            Console.WriteLine();
-
             return anniv;
         }
 
@@ -182,6 +180,7 @@ namespace Anniversary_Minder
                 Anniversary niv = anniversaries[sortedList[i].Key];
                 Console.WriteLine(niv + "\t"+(DateTime.Now.Year - sortedList[i].Value.Year));
             }
+            Console.WriteLine();
             Console.WriteLine(lineSeparator + "\n");
             Console.WriteLine("Press any key to continue...");
             while (!Console.KeyAvailable)
