@@ -22,12 +22,10 @@ namespace Anniversary_Minder
 
         public Address Address { get; set; } = new Address();
 
-        //TODO -> Implement an Update method
-
         override
         public string ToString()
         {
-            return $"{Names,-35}\t{AnniversaryDate,-6}\t{AnniversaryType,-15}";
+            return $"{Names}\t\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
         }
     }
     
@@ -44,7 +42,7 @@ namespace Anniversary_Minder
         override
         public string ToString()
         {
-            return $"{StreetAddress,-5}, {Municipality} {Province}, {PostalCode}";
+            return $"{StreetAddress}, {Municipality} {Province}, {PostalCode}";
         }
     }
 }

@@ -133,13 +133,13 @@ namespace Anniversary_Minder
             DisplayHeader("Selected Anniversary");
 
             Console.WriteLine();
-            Console.WriteLine("Name(s): " + anniversaries[index].Names);
-            Console.WriteLine("Date: " + anniversaries[index].AnniversaryDate);
-            Console.WriteLine("Type: " + anniversaries[index].AnniversaryType);
-            Console.WriteLine("Description: " + anniversaries[index].Description);
-            Console.WriteLine("Email: " + anniversaries[index].Email);
-            Console.WriteLine("Phone: " + anniversaries[index].PhoneNumber);
-            Console.WriteLine("Address: " + anniversaries[index].Address.ToString());
+            Console.WriteLine($"Name(s): ".PadRight(50) + anniversaries[index].Names);
+            Console.WriteLine($"Date: ".PadRight(50) + anniversaries[index].AnniversaryDate);
+            Console.WriteLine($"Type: ".PadRight(50) + anniversaries[index].AnniversaryType);
+            Console.WriteLine($"Description: ".PadRight(50) + anniversaries[index].Description);
+            Console.WriteLine($"Email: ".PadRight(50) + anniversaries[index].Email);
+            Console.WriteLine($"Phone: ".PadRight(50) + anniversaries[index].PhoneNumber);
+            Console.WriteLine($"Address: ".PadRight(50) + anniversaries[index].Address.ToString());
             Console.WriteLine();
 
             Console.WriteLine(lineSeparator);
