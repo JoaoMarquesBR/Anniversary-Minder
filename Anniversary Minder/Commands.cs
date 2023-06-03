@@ -195,27 +195,49 @@ namespace Anniversary_Minder
             DisplayHeader("Edit Selected Anniversary");
             Console.WriteLine("\nKEY-IN NEW values for any field, or PRESS ENTER to accept the current field value...\n");
 
+            string? input;
             Console.Write($"Names(s) \"{anniversaries[editIndex].Names}\": ");
-            anniversaries[editIndex].Names = Console.ReadLine() ?? anniversaries[editIndex].Names;
-            Console.Write($"Anniversary Type \"{anniversaries[editIndex].AnniversaryType}\": ");
-            anniversaries[editIndex].AnniversaryType = Console.ReadLine() ?? anniversaries[editIndex].AnniversaryType;
-            Console.Write($"Description \"{anniversaries[editIndex].Description}\": ");
-            anniversaries[editIndex].Description = Console.ReadLine() ?? anniversaries[editIndex].Description;
-            Console.Write($"Anniversary Date \"{anniversaries[editIndex].AnniversaryDate}\": ");
-            anniversaries[editIndex].AnniversaryDate = Console.ReadLine() ?? anniversaries[editIndex].AnniversaryDate;
-            Console.Write($"Email \"{anniversaries[editIndex].Email}\": ");
-            anniversaries[editIndex].Email = Console.ReadLine() ?? anniversaries[editIndex].Email;
-            Console.Write($"Phone # \"{anniversaries[editIndex].PhoneNumber}\": ");
-            anniversaries[editIndex].PhoneNumber = Console.ReadLine() ?? anniversaries[editIndex].PhoneNumber;
-            Console.Write($"Street Address \"{anniversaries[editIndex].Address.StreetAddress}\": ");
-            anniversaries[editIndex].Address.StreetAddress = Console.ReadLine() ?? anniversaries[editIndex].Address.StreetAddress;
-            Console.Write($"Municipality \"{anniversaries[editIndex].Address.Municipality}\": ");
-            anniversaries[editIndex].Address.Municipality = Console.ReadLine() ?? anniversaries[editIndex].Address.Municipality;
-            Console.Write($"Province \"{anniversaries[editIndex].Address.Province}\": ");
-            anniversaries[editIndex].Address.Province = Console.ReadLine() ?? anniversaries[editIndex].Address.Province;
-            Console.Write($"PostalCode \"{anniversaries[editIndex].Address.PostalCode}\": ");
-            anniversaries[editIndex].Address.PostalCode = Console.ReadLine() ?? anniversaries[editIndex].Address.PostalCode;
+            input = Console.ReadLine();
+            anniversaries[editIndex].Names = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Names : input!;
 
+            Console.Write($"Anniversary Type \"{anniversaries[editIndex].AnniversaryType}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].AnniversaryType = string.IsNullOrEmpty(input) ? anniversaries[editIndex].AnniversaryType : input!;
+
+            Console.Write($"Description \"{anniversaries[editIndex].Description}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Description = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Description : input!;
+
+            Console.Write($"Anniversary Date \"{anniversaries[editIndex].AnniversaryDate}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].AnniversaryDate = string.IsNullOrEmpty(input) ? anniversaries[editIndex].AnniversaryDate : input!;
+
+            Console.Write($"Email \"{anniversaries[editIndex].Email}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Email = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Email : input!;
+
+            Console.Write($"Phone # \"{anniversaries[editIndex].PhoneNumber}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].PhoneNumber = string.IsNullOrEmpty(input) ? anniversaries[editIndex].PhoneNumber : input!;
+
+            Console.Write($"Street Address \"{anniversaries[editIndex].Address.StreetAddress}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Address.StreetAddress = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Address.StreetAddress : input!;
+
+            Console.Write($"Municipality \"{anniversaries[editIndex].Address.Municipality}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Address.Municipality = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Address.Municipality : input!;
+
+            Console.Write($"Province \"{anniversaries[editIndex].Address.Province}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Address.Province = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Address.Province : input!;
+
+            Console.Write($"PostalCode \"{anniversaries[editIndex].Address.PostalCode}\": ");
+            input = Console.ReadLine();
+            anniversaries[editIndex].Address.PostalCode = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Address.PostalCode : input!;
+
+
+            FileHandler.WriteLibToJsonFile(anniversaries, Program.JsonFile);
             RedirectToMainMenu(anniversaries);
         }
 
