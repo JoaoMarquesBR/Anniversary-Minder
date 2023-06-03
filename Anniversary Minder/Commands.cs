@@ -12,7 +12,7 @@ namespace Anniversary_Minder
 {
     public class Commands
     {
-        private const string lineSeparator = "-----------------------------------------------------------------------";
+        private const string lineSeparator = "-----------------------------------------------------------------------------------------";
 
         public Anniversary AddAnniversary(in string SchemaFile)
         {
@@ -47,7 +47,7 @@ namespace Anniversary_Minder
 
                     valid = ValidateItem(anniv, jsonSchema, out IList<string> messages);
 
-                    if (messages != null)
+                    if (messages != null && messages.Count>=0)
                     {
                         Console.WriteLine($"\nERROR:\tInvalid anniversary information entered.\n");
 
@@ -145,9 +145,39 @@ namespace Anniversary_Minder
             DisplaySelectedOptions();
         }
 
-        public void ListUpcomingAnniversary(in List<Anniversary> anniversaries)
+        public void DisplayUpcomingAnniversary(in List<Anniversary> anniversaries)
         {
-            
+            Dictionary<int,DateTime> map = new Dictionary<int,DateTime>();
+
+            for(int i=0;i<anniversaries.Count;i++)
+            {
+                DateTime nivDate = DateTime.Parse(anniversaries[i].AnniversaryDate);
+                DateTime todayDate = new DateTime(nivDate.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+                TimeSpan difference = nivDate - todayDate;
+
+                if (difference.Days <= 14 && difference.Days >=0 )
+                {
+                    map.Add(i,nivDate);
+                }
+            }
+
+            List<KeyValuePair<int, DateTime>> sortedList = map.OrderBy(x => x.Value.Month).ThenBy(x => x.Value.Day).ToList();
+
+            DisplayHeader("UPCOMING ANNIVERSARIES");
+            Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType\t\tYears");
+            Console.WriteLine(lineSeparator + "\n");
+            for (int i=0;i<sortedList.Count;i++)
+            {
+                Anniversary niv = anniversaries[sortedList[i].Key];
+                Console.WriteLine(niv + "\t"+(DateTime.Now.Year - sortedList[i].Value.Year));
+            }
+            Console.WriteLine(lineSeparator + "\n");
+            Console.WriteLine("Press any key to continue...");
+            while (!Console.KeyAvailable)
+            {
+            }
+            Console.ReadKey();
         }
 
         //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose

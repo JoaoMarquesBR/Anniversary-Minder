@@ -1,7 +1,7 @@
 [
     {
         "Names": "Joao",
-        "AnniversaryDate": "2012/10/10",
+        "AnniversaryDate": "2000/06/3",
         "AnniversaryType": "birthday",
         "Description": "My 21y birthday!",
         "Email": "johnarmques.br200@Gmail.com",
@@ -15,7 +15,7 @@
     },
     {
         "Names": "Gui",
-        "AnniversaryDate": "2012/10/10",
+        "AnniversaryDate": "2005/06/15",
         "AnniversaryType": "birthday",
         "Description": "My 24th birthday!",
         "Email": "gui@gmail.com",
@@ -29,7 +29,7 @@
     },
     {
         "Names": "Pedro",
-        "AnniversaryDate": "2053/10/15",
+        "AnniversaryDate": "2003/06/1",
         "AnniversaryType": "birthday",
         "Description": "lastBirthday",
         "Email": "ped@ex.ca",
@@ -43,7 +43,7 @@
     },
     {
         "Names": "Manny",
-        "AnniversaryDate": "2012/12/12",
+        "AnniversaryDate": "2020/06/30",
         "AnniversaryType": "death",
         "Description": "ded",
         "Email": "manny@gmail.com",
@@ -53,6 +53,48 @@
             "Municipality": "",
             "Province": "ON",
             "PostalCode": "N6K 3F5"
+        }
+    },
+    {
+        "Names": "Denilza",
+        "AnniversaryDate": "2015/06/4",
+        "AnniversaryType": "birthday",
+        "Description": "test",
+        "Email": "tes@gmail.com",
+        "PhoneNumber": "151961546441",
+        "Address": {
+            "StreetAddress": "110 oxford",
+            "Municipality": "London",
+            "Province": "ON",
+            "PostalCode": "N6H 1R9"
+        }
+    },
+    {
+        "Names": "Anninha",
+        "AnniversaryDate": "2018/06/7",
+        "AnniversaryType": "birthday",
+        "Description": "testing",
+        "Email": "test@gmail.com",
+        "PhoneNumber": "1519615464",
+        "Address": {
+            "StreetAddress": "110 ox",
+            "Municipality": "London",
+            "Province": "ON",
+            "PostalCode": "N6H 1R9"
+        }
+    },
+    {
+        "Names": "Walter",
+        "AnniversaryDate": "2013/06/6",
+        "AnniversaryType": "birthday",
+        "Description": "testing",
+        "Email": "res@gmail.com",
+        "PhoneNumber": "5196154641",
+        "Address": {
+            "StreetAddress": "110 oxford",
+            "Municipality": "London",
+            "Province": "ON",
+            "PostalCode": "N6H 1R9"
         }
     }
 ]

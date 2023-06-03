@@ -8,7 +8,7 @@
         static void Main(string[] args)
         {
             Commands cm = new Commands();
-
+            
             cm.DisplayHeader("All Anniversaries");
 
             List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
@@ -31,7 +31,7 @@
                         break;
 
                     case "u":
-                        cm.ListUpcomingAnniversary(anniversaryList);
+                        cm.DisplayUpcomingAnniversary(anniversaryList);
                         break;
 
                     case "x":
