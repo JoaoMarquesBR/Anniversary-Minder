@@ -173,7 +173,7 @@ namespace Anniversary_Minder
 
             List<KeyValuePair<int, DateTime>> sortedList = map.OrderBy(x => x.Value.Month).ThenBy(x => x.Value.Day).ToList();
 
-            DisplayHeader("UPCOMING ANNIVERSARIES");
+            DisplayHeader("Upcoming Anniversaries");
             Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType\t\tYears");
             Console.WriteLine(lineSeparator + "\n");
             for (int i=0;i<sortedList.Count;i++)
@@ -188,36 +188,6 @@ namespace Anniversary_Minder
             }
             Console.ReadKey();
             RedirectToMainMenu(anniversaries);
-        }
-
-        //TODO -> Instead of OfferUpdateAnniversary we need to allow user to choose
-        // which anniversary he wants to see, and we also need to give them the
-        // options to Edit, Delete and Return (to the list of anniversaries)
-        public void OfferUpdateAnniversary(in List<Anniversary> anniversaries)
-        {
-            Console.Write("Would you like to update any of these birthday? [Y/N]: ");
-            string input = Console.ReadLine() ?? "";
-
-            if (input.Contains("y", StringComparison.OrdinalIgnoreCase))
-            {
-                Console.WriteLine("Select ID: ");
-                input = Console.ReadLine() ?? "";
-                if (int.TryParse(input, out int annivIndex))
-                {
-                    UpdateAnniversary(anniversaries, annivIndex);
-                }
-                else
-                {
-                    Console.WriteLine("Error: Wrong input");
-                    Console.WriteLine("Expected: Integer");
-
-                }
-            }
-        }
-
-        public void UpdateAnniversary(in List<Anniversary> anniversaries, int updateIndex)
-        {
-            
         }
 
         public void EditAnniversary(in List<Anniversary> anniversaries, int editIndex)
