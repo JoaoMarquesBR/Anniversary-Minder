@@ -9,12 +9,8 @@
         {
             Commands cm = new Commands();
 
-            cm.DisplayHeader("All Anniversaries");
-
             List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
-            cm.DisplayAnniversaries(anniversaryList);
-
-            cm.DisplayMainOptions();
+            cm.RedirectToMainMenu(anniversaryList);
 
             while (true)
             {
