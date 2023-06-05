@@ -11,8 +11,8 @@ namespace Anniversary_Minder
      */
     internal class Program
     {
-        public const string JsonFile = @"../../../anniversary.json";
-        private const string SchemaFile = @"../../../anniversary_schema.json";
+        public const string JsonFile = @"../../../JsonFiles/anniversary.json";
+        private const string SchemaFile = @"../../../JsonFiles/anniversary_schema.json";
 
         static void Main(string[] args)
         {
