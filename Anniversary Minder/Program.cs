@@ -16,7 +16,7 @@ namespace Anniversary_Minder
 
         static void Main(string[] args)
         {
-            Commands cm = new Commands();
+            Commands cm = Commands.GetInstance();
 
             List<Anniversary>? anniversaryList = cm.GetAnniversaries(JsonFile, SchemaFile);
             cm.RedirectToMainMenu(anniversaryList);

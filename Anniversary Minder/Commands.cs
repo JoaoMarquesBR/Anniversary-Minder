@@ -21,7 +21,27 @@ namespace Anniversary_Minder
      */
     public class Commands
     {
-        private const string lineSeparator = "-----------------------------------------------------------------------------------------";
+        private static Commands? c;
+
+        private static string lineSeparator = "-----------------------------------------------------------------------------------------";
+
+        /*
+         * Constructor: Commands
+         * Purpose: Creates a Commands object
+         * Accepts: Nothing
+         * Returns: A Commands object
+         */
+        private Commands()
+        {
+        }
+
+        public static Commands GetInstance()
+        {
+            if (c == null)
+                c = new Commands();
+
+            return c;
+        }
 
         /*
          * Method Name: AddAnniversary
