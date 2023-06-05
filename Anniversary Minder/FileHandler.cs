@@ -1,3 +1,8 @@
+/**
+ * Coder: Gui Miranda, Joao Marques
+ * Date: 06/05/2023
+ */
+
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -11,14 +16,30 @@ using Newtonsoft.Json.Schema;
 
 namespace Anniversary_Minder
 {
+    /**
+	 * Class Name: FileHandler
+	 * Purpose: Handles File input from the user
+     */
     public class FileHandler
     {
-        public static void WriteLibToJsonFile(List<Anniversary> anniversaries, string path)
+        /*
+         * Method Name: WriteAnniversaryToJsonFile
+         * Purpose: Outputs the Anniversary List into a json file
+         * Accepts: Anniversary List, json file path string
+         * Returns: Nothing
+         */
+        public static void WriteAnniversaryToJsonFile(List<Anniversary> anniversaries, string path)
         {
             string json = JsonConvert.SerializeObject(anniversaries);
             File.WriteAllText(path, json);
         }
 
+        /*
+         * Method Name: ReadJsonToAnniversary
+         * Purpose: Outputs a json file data into an Anniversary List
+         * Accepts: Json file path string, json schema path
+         * Returns: Anniversary List
+         */
         public static List<Anniversary>? ReadJsonToAnniversary(string path, in string SchemaFile)
         {
             try
@@ -60,8 +81,12 @@ namespace Anniversary_Minder
             }
         }
 
-        // Attempts to read the json file specified by 'path' into the string 'json'
-        // Returns 'true' if successful or 'false' if it fails
+        /*
+         * Method Name: ReadFile
+         * Purpose: Attempts to read the json file specified by 'path' into the string 'json'
+         * Accepts: File path string, json output string
+         * Returns: True if successful or False if it fails
+         */
         public static bool ReadFile(string path, out string json)
         {
             try
@@ -77,6 +102,12 @@ namespace Anniversary_Minder
             }
         }
 
+        /*
+         * Method Name: ValidateAnniversaryData
+         * Purpose: Validates Anniversary objects coming from json file
+         * Accepts: A jsonData string, json schema string, messages List string
+         * Returns: True if valid or False if not valid
+         */
         public static bool ValidateAnniversaryData(in string jsonData, in string jsonSchema, out IList<string> messages)
         {
             JSchema schema = JSchema.Parse(jsonSchema);

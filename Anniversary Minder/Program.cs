@@ -1,5 +1,14 @@
-﻿namespace Anniversary_Minder
+﻿/**
+ * Coder: Gui Miranda, Joao Marques
+ * Date: 06/05/2023
+ */
+
+namespace Anniversary_Minder
 {
+    /**
+	 * Class Name: Program
+	 * Purpose: Handles Anniversary Minder menu functionality
+     */
     internal class Program
     {
         public const string JsonFile = @"../../../../anniversary.json";
@@ -23,7 +32,7 @@
                         Anniversary anniversary = cm.AddAnniversary(SchemaFile);
                         anniversaryList.Add(anniversary);
 
-                        FileHandler.WriteLibToJsonFile(anniversaryList, JsonFile);
+                        FileHandler.WriteAnniversaryToJsonFile(anniversaryList, JsonFile);
                         cm.RedirectToMainMenu(anniversaryList);
                         break;
 

@@ -1,3 +1,8 @@
+/**
+ * Coder: Gui Miranda, Joao Marques
+ * Date: 06/05/2023
+ */
+
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
@@ -10,10 +15,20 @@ using System.Threading.Tasks;
 
 namespace Anniversary_Minder
 {
+    /**
+	 * Class Name: Commands
+	 * Purpose: Facilitates the commands to interact with the Menu
+     */
     public class Commands
     {
         private const string lineSeparator = "-----------------------------------------------------------------------------------------";
 
+        /*
+         * Method Name: AddAnniversary
+         * Purpose: Adds and returns a new Anniversary object
+         * Accepts: A string containing the path to the Json Schema
+         * Returns: An instance of Anniversary
+         */
         public Anniversary AddAnniversary(in string SchemaFile)
         {
             Anniversary anniv = new Anniversary();
@@ -64,6 +79,12 @@ namespace Anniversary_Minder
             return anniv;
         }
 
+        /*
+         * Method Name: AddAddress
+         * Purpose: Adds and returns a new Address object
+         * Accepts: Nothing
+         * Returns: An instance of Address
+         */
         private Address AddAddress()
         {
             Address address = new Address();
@@ -84,7 +105,12 @@ namespace Anniversary_Minder
         }
 
 
-
+        /*
+         * Method Name: ValidateItem
+         * Purpose: Adds and returns a new Address object
+         * Accepts: Anniversary object, json schema string, messages string list
+         * Returns: True or False, if it's valid or not
+         */
         private static bool ValidateItem(in Anniversary item, in string jsonSchema, out IList<string> messages)
         {
             string jsonData = JsonConvert.SerializeObject(item);
@@ -95,7 +121,12 @@ namespace Anniversary_Minder
         }
 
 
-
+        /*
+         * Method Name: GetAnniversaries
+         * Purpose: Adds and returns a new Anniversary List
+         * Accepts: Json path string, json schema string
+         * Returns: A List of Anniversary objects
+         */
         public List<Anniversary> GetAnniversaries(in string JsonFile, in string SchemaFile)
         {
             List<Anniversary>? anniversaries = FileHandler.ReadJsonToAnniversary(JsonFile, SchemaFile);
@@ -107,7 +138,12 @@ namespace Anniversary_Minder
         }
 
 
-
+        /*
+         * Method Name: DisplayAnniversaries
+         * Purpose: To display the current List of Anniversary objects
+         * Accepts: Anniversary List
+         * Returns: Nothing
+         */
         public void DisplayAnniversaries(in List<Anniversary> anniversaries)
         {
             Console.WriteLine("Name(s)\t\t\t\t\tDate\t\tType");
@@ -123,6 +159,12 @@ namespace Anniversary_Minder
             Console.WriteLine("\n" + lineSeparator);
         }
 
+        /*
+         * Method Name: DisplaySelectedAnniversary
+         * Purpose: Displays the current SELECTED Anniversary object
+         * Accepts: Anniversary List
+         * Returns: Nothing
+         */
         public void DisplaySelectedAnniversary(in List<Anniversary> anniversaries)
         {
             Console.Write("\nPress a number from the above list to entry -> ");
@@ -153,6 +195,12 @@ namespace Anniversary_Minder
                 RedirectToMainMenu(anniversaries);
         }
 
+        /*
+         * Method Name: DisplayUpcomingAnniversary
+         * Purpose: Displays the upcoming Anniversary objects
+         * Accepts: Anniversary List
+         * Returns: Nothing
+         */
         public void DisplayUpcomingAnniversary(in List<Anniversary> anniversaries)
         {
             Dictionary<int,DateTime> map = new Dictionary<int,DateTime>();
@@ -190,6 +238,12 @@ namespace Anniversary_Minder
             RedirectToMainMenu(anniversaries);
         }
 
+        /*
+         * Method Name: EditAnniversary
+         * Purpose: Edits an Anniversary object
+         * Accepts: Anniversary List, edit index int
+         * Returns: Nothing
+         */
         public void EditAnniversary(in List<Anniversary> anniversaries, int editIndex)
         {
             DisplayHeader("Edit Selected Anniversary");
@@ -237,17 +291,29 @@ namespace Anniversary_Minder
             anniversaries[editIndex].Address.PostalCode = string.IsNullOrEmpty(input) ? anniversaries[editIndex].Address.PostalCode : input!;
 
 
-            FileHandler.WriteLibToJsonFile(anniversaries, Program.JsonFile);
+            FileHandler.WriteAnniversaryToJsonFile(anniversaries, Program.JsonFile);
             RedirectToMainMenu(anniversaries);
         }
 
+        /*
+         * Method Name: DeleteAnniversary
+         * Purpose: Deletes an Anniversary object
+         * Accepts: Anniversary List, edit index int
+         * Returns: Nothing
+         */
         public void DeleteAnniversary(in List<Anniversary> anniversaries, int deleteIndex)
         {
             anniversaries.Remove(anniversaries[deleteIndex]);
-            FileHandler.WriteLibToJsonFile(anniversaries,Program.JsonFile);
+            FileHandler.WriteAnniversaryToJsonFile(anniversaries,Program.JsonFile);
             RedirectToMainMenu(anniversaries);
         }
 
+        /*
+         * Method Name: RedirectToMainMenu
+         * Purpose: Redirects to the Main Menu
+         * Accepts: Anniversary List
+         * Returns: Nothing
+         */
         public void RedirectToMainMenu(in List<Anniversary> anniversaries)
         {
             DisplayHeader("All Anniversaries");
@@ -256,7 +322,12 @@ namespace Anniversary_Minder
         }
 
 
-
+        /*
+         * Method Name: DisplayHeader
+         * Purpose: Displays Main Menu header
+         * Accepts: A headerInfo string
+         * Returns: Nothing
+         */
         private void DisplayHeader(string headerInfo)
         {
             Console.WriteLine(lineSeparator);
@@ -264,6 +335,12 @@ namespace Anniversary_Minder
             Console.WriteLine(lineSeparator);
         }
 
+        /*
+         * Method Name: DisplayMainOptions
+         * Purpose: Displays Main Menu options
+         * Accepts: Nothing
+         * Returns: Nothing
+         */
         private void DisplayMainOptions()
         {
             Console.WriteLine("\nPress # to choose an anniversary to view.");
@@ -273,6 +350,12 @@ namespace Anniversary_Minder
             Console.WriteLine(lineSeparator);
         }
 
+        /*
+         * Method Name: DisplaySelectedOptions
+         * Purpose: Displays Selected Anniversary options
+         * Accepts: Nothing
+         * Returns: Nothing
+         */
         private void DisplaySelectedOptions()
         {
             Console.WriteLine("\nPress E to edit this anniversary.");
@@ -281,11 +364,23 @@ namespace Anniversary_Minder
             Console.WriteLine(lineSeparator);
         }
 
+        /*
+         * Method Name: Quit
+         * Purpose: Quits the program
+         * Accepts: Nothing
+         * Returns: Nothing
+         */
         public void Quit()
         {
             Environment.Exit(0);
         }
 
+        /*
+         * Method Name: GetUserInput
+         * Purpose: Gets an user input
+         * Accepts: Nothing
+         * Returns: A string containing user input
+         */
         public string GetUserInput()
         {
             return Console.ReadLine() ?? "";

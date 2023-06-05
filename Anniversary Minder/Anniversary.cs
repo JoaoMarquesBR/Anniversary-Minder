@@ -1,4 +1,9 @@
-﻿using System;
+﻿/**
+ * Coder: Gui Miranda, Joao Marques
+ * Date: 06/05/2023
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace Anniversary_Minder
 {
+    /**
+	 * Class Name: Anniversary
+	 * Purpose: Creates an Anniversary object template
+     */
     public class Anniversary
     {
         public string Names { get; set; } = "";
@@ -22,13 +31,23 @@ namespace Anniversary_Minder
 
         public Address Address { get; set; } = new Address();
 
+        /*
+         * Method Name: ToString
+         * Purpose: Returns a string representation of an Anniversary object
+         * Accepts: Nothing
+         * Returns: A string representation of an Anniversary object
+         */
         override
         public string ToString()
         {
             return $"{Names}\t\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
         }
     }
-    
+
+    /**
+	 * Class Name: Address
+	 * Purpose: Creates an Address object template
+     */
     public class Address
     {
         public string? StreetAddress;
@@ -39,6 +58,12 @@ namespace Anniversary_Minder
 
         public string? PostalCode;
 
+        /*
+         * Method Name: ToString
+         * Purpose: Returns a string representation of an Address object
+         * Accepts: Nothing
+         * Returns: A string representation of an Address object
+         */
         override
         public string ToString()
         {
