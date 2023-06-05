@@ -20,7 +20,7 @@ namespace Anniversary_Minder
 	 * Class Name: FileHandler
 	 * Purpose: Handles File input from the user
      */
-    public class FileHandler
+    public static class FileHandler
     {
         /*
          * Method Name: WriteAnniversaryToJsonFile
