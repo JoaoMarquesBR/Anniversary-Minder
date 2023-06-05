@@ -40,7 +40,7 @@ namespace Anniversary_Minder
         override
         public string ToString()
         {
-            return $"{Names}\t\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
+            return $"{Names}\t\t\t\t{AnniversaryDate}\t{AnniversaryType}";
         }
     }
 
